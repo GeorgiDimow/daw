@@ -19,6 +19,8 @@ RUN --mount=type=cache,target=/root/.gradle \
         extract --layers --launcher --destination /extracted
 
 FROM eclipse-temurin:21-jre-alpine
+# Pick up OS security fixes published after the base image was built.
+RUN apk upgrade --no-cache
 RUN addgroup -S -g 10001 app && adduser -S -u 10001 -G app app
 WORKDIR /app
 # Least-frequently-changing layers first.

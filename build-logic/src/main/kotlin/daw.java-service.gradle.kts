@@ -15,6 +15,12 @@ java {
     }
 }
 
+// Security patch overrides for versions managed by the Spring Boot BOM (Trivy HIGH/CRITICAL findings).
+// Remove each one once the Spring Boot release in libs.versions.toml ships a fixed version.
+extra["tomcat.version"] = "11.0.27"
+extra["jackson-bom.version"] = "3.1.8" // Jackson 3 (tools.jackson)
+extra["jackson-2-bom.version"] = "2.21.8" // Jackson 2 (com.fasterxml), still pulled in by springdoc/swagger
+
 dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
