@@ -46,10 +46,13 @@ jobs:
       packages: write # push to GHCR (main only)
       id-token: write # keyless cosign signing (main only)
     env:
-      IMAGE: ghcr.io/${{ github.repository_owner }}/daw-${{ inputs.service }}
       PUBLISH: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v7
+
+      # Registry paths must be lowercase, but GitHub owner names can have capitals.
+      - name: Set image name
+        run: echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/daw-${{ inputs.service }}" >> "$GITHUB_ENV"
 
       - uses: docker/setup-buildx-action@v4
 

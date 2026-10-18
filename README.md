@@ -44,7 +44,7 @@ API docs: http://localhost:8081/swagger-ui.html
 ## CI/CD
 
 - `ci-auth-service`: tests, Docker build, Trivy image scan, SBOM. On `main` it also pushes to GHCR and signs the image with cosign.
-- `security`: gitleaks, dependency review, Trivy filesystem/config scan (PRs, `main`, weekly).
+- `security`: gitleaks and a Trivy filesystem/config scan (PRs, `main`, weekly).
 - Dependabot keeps Gradle, GitHub Actions and Docker base images up to date.
 
 Contributions go through pull requests with [Conventional Commit](https://www.conventionalcommits.org) titles.
