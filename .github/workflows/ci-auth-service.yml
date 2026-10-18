@@ -1,0 +1,29 @@
+name: ci-auth-service
+
+on:
+  pull_request:
+    paths: &paths
+      - services/auth-service/**
+      - build-logic/**
+      - gradle/**
+      - "*.gradle.kts"
+      - .github/workflows/ci-java-service.yml
+      - .github/workflows/ci-auth-service.yml
+  push:
+    branches: [main]
+    paths: *paths
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci-java-service.yml
+    with:
+      service: auth-service
