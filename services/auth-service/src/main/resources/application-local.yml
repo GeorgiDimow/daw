@@ -1,0 +1,4 @@
+# Local development (docker compose). JWT keys are generated at startup when not configured.
+logging:
+  level:
+    com.daw: debug

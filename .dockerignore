@@ -1,0 +1,13 @@
+# Docker builds use the repo root as context; send only what Gradle needs.
+**/build/
+**/.gradle/
+.kotlin/
+.git/
+.github/
+.idea/
+.vscode/
+docs/
+*.md
+.env
+*.pem
+*.key
