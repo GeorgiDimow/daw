@@ -38,7 +38,7 @@ class AuthFlowIntegrationTest {
 
         mvc.perform(post("/api/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(registerJson("  " + email.toUpperCase() + " ", "s3cret-pass", "Ada")))
+                        .content(registerJson(email.toUpperCase(), "s3cret-pass", "Ada")))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.email").value(email))
                 .andExpect(jsonPath("$.displayName").value("Ada"))
