@@ -2,7 +2,7 @@
 # Build context is the repo root (needs build-logic and the version catalog):
 #   docker build -f services/auth-service/Dockerfile .
 
-FROM eclipse-temurin:21-jdk AS build
+FROM eclipse-temurin:24-jdk AS build
 WORKDIR /workspace
 COPY --chmod=755 gradlew ./
 COPY gradle gradle
@@ -18,7 +18,7 @@ RUN --mount=type=cache,target=/root/.gradle \
  && java -Djarmode=tools -jar services/auth-service/build/libs/auth-service-*.jar \
         extract --layers --launcher --destination /extracted
 
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:24-jre-alpine
 # Pick up OS security fixes published after the base image was built.
 RUN apk upgrade --no-cache
 RUN addgroup -S -g 10001 app && adduser -S -u 10001 -G app app
